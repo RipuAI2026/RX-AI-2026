@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Ripu AI — Your Creative AI Studio</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#18223d;--text:#f4f7ff;--muted:#aab6d3;--line:#293653;--accent:#8b7cff;--accent2:#43d9c3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#20285a 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 0 22px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem}.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07101d;font-weight:900}
+select,button,input,textarea{font:inherit}select,.field,textarea{background:#0d1428;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%}
+.hero{padding:28px 0 24px}.pill{display:inline-block;border:1px solid #3a4268;border-radius:99px;padding:5px 10px;color:#c9c7ff;font-size:.83rem}
+h1{font-size:clamp(2rem,7vw,3.6rem);line-height:1.08;margin:14px 0}h1 span{color:var(--accent2)}.hero p{max-width:650px;color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0 28px}
+.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:18px}
+.card h3{margin:8px 0 5px}.card p{color:var(--muted);margin:0 0 14px;font-size:.94rem}.emoji{font-size:1.65rem}
+button{border:0;cursor:pointer;border-radius:12px;padding:11px 14px;font-weight:700;background:linear-gradient(135deg,var(--accent),#6d8cff);color:white}
+button.secondary{background:#202b49;border:1px solid #3a496b}.card button{width:100%}
+.workspace{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin:12px 0 28px}
+label{display:block;font-weight:650;margin:13px 0 6px}textarea{min-height:100px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.output{white-space:pre-wrap;background:#0a1122;border:1px solid var(--line);border-radius:12px;padding:14px;min-height:90px;margin-top:14px;color:#e5ebff}
+.note{font-size:.88rem;color:var(--muted)}footer{padding:20px 0 32px;color:var(--muted);font-size:.88rem}
+@media(max-width:580px){.wrap{padding:15px}.row{grid-template-columns:1fr}.hero{padding-top:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">R</div><span>Ripu AI</span></div>
+    <select id="language" aria-label="Language" style="width:auto;min-width:145px">
+      <option value="bn">বাংলা</option><option value="en">English</option>
+    </select>
+  </header>
+  <section class="hero">
+    <span class="pill" id="eyebrow">তোমার সৃজনশীল AI স্টুডিও</span>
+    <h1 id="headline">তোমার আইডিয়া থেকে <span>নতুন কিছু</span> তৈরি করো</h1>
+    <p id="intro">গল্প লেখো, ভিডিওর প্রম্পট বানাও, ভয়েসওভার স্ক্রিপ্ট তৈরি করো—সব এক জায়গায়। এটি Ripu AI-এর প্রথম ফ্রি প্রোটোটাইপ।</p>
+  </section>
+
+  <section class="grid" id="toolCards">
+    <article class="card"><div class="emoji">✍️</div><h3 data-bn="AI গল্প লেখক" data-en="AI Story Writer">AI গল্প লেখক</h3><p data-bn="ভূতের গল্প, রহস্য বা শর্ট ভিডিওর স্ক্রিপ্টের খসড়া তৈরি করো।" data-en="Draft horror, mystery, or short-video scripts.">ভূতের গল্প, রহস্য বা শর্ট ভিডিওর স্ক্রিপ্টের খসড়া তৈরি করো।</p><button data-tool="story" data-bn="গল্প তৈরি করো" data-en="Create a story">গল্প তৈরি করো</button></article>
+    <article class="card"><div class="emoji">🎬</div><h3 data-bn="ভিডিও প্রম্পট" data-en="Video Prompt Maker">ভিডিও প্রম্পট</h3><p data-bn="Veo বা অন্য ভিডিও টুলে ব্যবহার করার মতো দৃশ্যের প্রম্পট সাজাও।" data-en="Prepare scene prompts for Veo or other video tools.">Veo বা অন্য ভিডিও টুলে ব্যবহার করার মতো দৃশ্যের প্রম্পট সাজাও।</p><button data-tool="video" data-bn="প্রম্পট তৈরি করো" data-en="Create a prompt">প্রম্পট তৈরি করো</button></article>
+    <article class="card"><div class="emoji">🖼️</div><h3 data-bn="ছবির প্রম্পট" data-en="Image Prompt Maker">ছবির প্রম্পট</h3><p data-bn="পোস্টার, থাম্বনেইল বা সিনেমাটিক ছবির বর্ণনা তৈরি করো।" data-en="Create descriptions for posters, thumbnails, or cinematic images.">পোস্টার, থাম্বনেইল বা সিনেমাটিক ছবির বর্ণনা তৈরি করো।</p><button data-tool="image" data-bn="ছবির প্রম্পট" data-en="Image prompt">ছবির প্রম্পট</button></article>
+    <article class="card"><div class="emoji">🎙️</div><h3 data-bn="ভয়েসওভার স্ক্রিপ্ট" data-en="Voiceover Script">ভয়েসওভার স্ক্রিপ্ট</h3><p data-bn="বাংলা বা ইংরেজি ভিডিওর জন্য বলার মতো স্ক্রিপ্ট তৈরি করো।" data-en="Draft spoken scripts for Bangla or English videos.">বাংলা বা ইংরেজি ভিডিওর জন্য বলার মতো স্ক্রিপ্ট তৈরি করো।</p><button data-tool="voice" data-bn="স্ক্রিপ্ট তৈরি করো" data-en="Create a script">স্ক্রিপ্ট তৈরি করো</button></article>
+  </section>
+
+  <section class="workspace" id="workspace">
+    <h2 id="workTitle">✨ তোমার টুল ব্যবহার করো</h2>
+    <p class="note" id="workHint">একটি টুল বেছে নাও, বিষয় লেখো, তারপর তৈরি বোতামে চাপ দাও।</p>
+    <label id="topicLabel" for="topic">তোমার বিষয় / আইডিয়া</label>
+    <textarea id="topic" placeholder="যেমন: রাতে গ্রামের রাস্তায় এক ছেলের পেছনে রহস্যময় ছায়া..."></textarea>
+    <div class="row">
+      <div><label id="styleLabel" for="style">স্টাইল</label><select id="style"><option value="horror">ভৌতিক / Horror</option><option value="funny">মজার / Funny</option><option value="emotional">আবেগী / Emotional</option><option value="cinematic">সিনেমাটিক / Cinematic</option><option value="product">পণ্যের বিজ্ঞাপন / Product ad</option></select></div>
+      <div><label id="durationLabel" for="duration">দৈর্ঘ্য</label><select id="duration"><option value="10">১০ সেকেন্ড</option><option value="15" selected>১৫ সেকেন্ড</option><option value="30">৩০ সেকেন্ড</option><option value="60">৬০ সেকেন্ড</option></select></div>
+    </div>
+    <div class="actions"><button id="generate">✨ তৈরি করো</button><button class="secondary" id="clear">মুছে ফেলো</button></div>
+    <div class="output" id="output" aria-live="polite">তোমার তৈরি করা ফলাফল এখানে দেখাবে।</div>
+    <div class="actions"><button class="secondary" id="copy">ফলাফল কপি করো</button></div>
+    <p class="note" id="prototypeNote">নোট: এটি ফ্রি প্রোটোটাইপ। এখন ফলাফল তৈরি হয় ব্রাউজারের ভেতরের টেমপ্লেট দিয়ে; এটি এখনও সরাসরি AI ভিডিও/ছবি/ভয়েস তৈরি করে না।</p>
+  </section>
+  <footer>© <span id="year"></span> Ripu AI · <span id="footerText">তৈরি করো, শেখো, এগিয়ে যাও।</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let activeTool="story", lang="bn";
+const translations={
+bn:{eyebrow:"তোমার সৃজনশীল AI স্টুডিও",headline:'তোমার আইডিয়া থেকে <span>নতুন কিছু</span> তৈরি করো',intro:"গল্প লেখো, ভিডিওর প্রম্পট বানাও, ভয়েসওভার স্ক্রিপ্ট তৈরি করো—সব এক জায়গায়। এটি Ripu AI-এর প্রথম ফ্রি প্রোটোটাইপ।",workTitle:"✨ তোমার টুল ব্যবহার করো",workHint:"একটি টুল বেছে নাও, বিষয় লেখো, তারপর তৈরি বোতামে চাপ দাও।",topicLabel:"তোমার বিষয় / আইডিয়া",placeholder:"যেমন: রাতে গ্রামের রাস্তায় এক ছেলের পেছনে রহস্যময় ছায়া...",styleLabel:"স্টাইল",durationLabel:"দৈর্ঘ্য",generate:"✨ তৈরি করো",clear:"মুছে ফেলো",copy:"ফলাফল কপি করো",copied:"কপি হয়েছে!",empty:"আগে তোমার বিষয় বা আইডিয়া লিখো।",note:"নোট: এটি ফ্রি প্রোটোটাইপ। এখন ফলাফল তৈরি হয় ব্রাউজারের ভেতরের টেমপ্লেট দিয়ে; এটি এখনও সরাসরি AI ভিডিও/ছবি/ভয়েস তৈরি করে না।",footer:"তৈরি করো, শেখো, এগিয়ে যাও।",styles:{horror:"ভৌতিক",funny:"মজার",emotional:"আবেগী",cinematic:"সিনেমাটিক",product:"পণ্যের বিজ্ঞাপন"},dur:"সেকেন্ড"},
+en:{eyebrow:"Your creative AI studio",headline:'Turn your ideas into <span>something new</span>',intro:"Draft stories, video prompts, and voiceover scripts in one place. This is the first free Ripu AI prototype.",workTitle:"✨ Try your tool",workHint:"Choose a tool, enter an idea, then press Generate.",topicLabel:"Your topic / idea",placeholder:"Example: A mysterious shadow follows a boy on a village road at night...",styleLabel:"Style",durationLabel:"Duration",generate:"✨ Generate",clear:"Clear",copy:"Copy result",copied:"Copied!",empty:"Enter a topic or idea first.",note:"Note: This is a free prototype. Results currently use browser-based templates; it does not yet generate actual AI video, images, or audio.",footer:"Create, learn, and grow.",styles:{horror:"Horror",funny:"Funny",emotional:"Emotional",cinematic:"Cinematic",product:"Product ad"},dur:"seconds"}
+};
+function applyLang(){
+ const t=translations[lang]; document.documentElement.lang=lang;
+ ["eyebrow","intro","workTitle","workHint","topicLabel","styleLabel","durationLabel","generate","clear","copy","prototypeNote","footerText"].forEach(k=>$(k).textContent=t[k]);
+ $("headline").innerHTML=t.headline; $("topic").placeholder=t.placeholder;
+ document.querySelectorAll("[data-bn][data-en]").forEach(el=>el.textContent=el.dataset[lang]);
+ [...$("style").options].forEach(o=>o.textContent=translations[lang].styles[o.value]+(lang==="bn"&&o.value!=="product"?" / "+({horror:"Horror",funny:"Funny",emotional:"Emotional",cinematic:"Cinematic"}[o.value]):""));
+ [...$("duration").options].forEach(o=>o.textContent=o.value+(lang==="bn"?" সেকেন্ড":" seconds"));
+}
+function build(){
+ const t=translations[lang], topic=$("topic").value.trim(), style=t.styles[$("style").value], duration=$("duration").value;
+ if(!topic){$("output").textContent=t.empty;return}
+ const en=lang==="en";
+ let result="";
+ if(activeTool==="story"){
+ result=en?`TITLE: ${topic}\nSTYLE: ${style}\nDURATION: ${duration} seconds\n\nHOOK (first 2 seconds): Start with a surprising visual or question.\nSCENE 1: Establish the place and main character.\nSCENE 2: Introduce a strange event or conflict connected to: ${topic}.\nSCENE 3: Build suspense with a close-up, sound cue, or unexpected clue.\nENDING: Finish with a memorable twist. Use original narration and visuals.`:`শিরোনাম: ${topic}\nধরন: ${style}\nদৈর্ঘ্য: ${duration} সেকেন্ড\n\nদৃশ্য ১ (প্রথম ২ সেকেন্ড): আকর্ষণীয় প্রশ্ন বা অদ্ভুত দৃশ্য দিয়ে শুরু।\nদৃশ্য ২: জায়গা ও প্রধান চরিত্র দেখাও।\nদৃশ্য ৩: ${topic} ঘিরে অস্বাভাবিক ঘটনা বা সমস্যা তৈরি করো।\nদৃশ্য ৪: ক্লোজ-আপ, শব্দ বা অপ্রত্যাশিত ইঙ্গিত দিয়ে উত্তেজনা বাড়াও।\nশেষ: মনে থাকার মতো মোড় দিয়ে শেষ করো। নিজের বর্ণনা ও মৌলিক দৃশ্য ব্যবহার করো।`;
+ }else if(activeTool==="video"){
+ result=en?`VIDEO GENERATION PROMPT\nCreate a ${duration}-second ${style.toLowerCase()} video about: ${topic}.\nFormat: vertical 9:16, clear subject, consistent characters, cinematic composition, natural motion, detailed environment, appropriate lighting.\nCamera: establish the scene, medium shot, then close-up.\nAudio: suitable ambient sound; no unwanted text or logos.\nKeep the story coherent and make the opening 2 seconds visually engaging.`:`ভিডিও জেনারেশন প্রম্পট\n${topic} নিয়ে ${duration} সেকেন্ডের ${style} ভিডিও তৈরি করো।\nফরম্যাট: ভার্টিক্যাল 9:16, পরিষ্কার প্রধান চরিত্র, একই দৃশ্যে চরিত্রের চেহারা সামঞ্জস্যপূর্ণ, সিনেমাটিক কম্পোজিশন, স্বাভাবিক নড়াচড়া, বিস্তারিত পরিবেশ ও উপযুক্ত আলো।\nক্যামেরা: প্রথমে পরিবেশ, এরপর মিডিয়াম শট, তারপর ক্লোজ-আপ।\nঅডিও: মানানসই পরিবেশের শব্দ; অপ্রয়োজনীয় লেখা বা লোগো নয়।\nপ্রথম ২ সেকেন্ড আকর্ষণীয় রাখো এবং গল্পের ধারাবাহিকতা বজায় রাখো।`;
+ }else if(activeTool==="image"){
+ result=en?`IMAGE GENERATION PROMPT\nCreate a ${style.toLowerCase()} image about: ${topic}.\nComposition: clear focal subject, layered foreground and background, expressive lighting, detailed textures, balanced framing, high visual quality.\nFor a thumbnail, keep a clean area for title text. Avoid watermarks, accidental lettering, and logos.\nSuggested format: 9:16 for Shorts cover or 16:9 for a video thumbnail.`:`ছবি তৈরির প্রম্পট\n${topic} নিয়ে একটি ${style} ছবি তৈরি করো।\nকম্পোজিশন: প্রধান বিষয় স্পষ্ট, সামনে ও পেছনে স্তরযুক্ত পরিবেশ, অভিব্যক্তিপূর্ণ আলো, বিস্তারিত টেক্সচার, ভারসাম্যপূর্ণ ফ্রেম ও উচ্চমানের দৃশ্য।\nথাম্বনেইল হলে শিরোনাম বসানোর জন্য পরিষ্কার জায়গা রাখো। ওয়াটারমার্ক, ভুল লেখা ও অপ্রয়োজনীয় লোগো এড়িয়ে চলো।\nপ্রস্তাবিত ফরম্যাট: Shorts কভারের জন্য 9:16 অথবা ভিডিও থাম্বনেইলের জন্য 16:9।`;
+ }else{
+ result=en?`VOICEOVER SCRIPT DRAFT\nTopic: ${topic}\nStyle: ${style}\nTarget duration: ${duration} seconds\n\n[Opening hook]\n“Have you ever wondered what happens when ${topic}?”\n\n[Main narration]\nDescribe the scene in short, natural sentences. Build curiosity, use pauses before key moments, and keep the wording easy to speak.\n\n[Closing line]\n“Stay until the end—and tell us what you would do.”\n\nRecord in your own voice or use a voice tool that you have permission to use.`:`ভয়েসওভার স্ক্রিপ্টের খসড়া\nবিষয়: ${topic}\nধরন: ${style}\nলক্ষ্য দৈর্ঘ্য: ${duration} সেকেন্ড\n\n[শুরুর আকর্ষণ]\n“কখনো কি ভেবেছ, ${topic} হলে কী ঘটতে পারে?”\n\n[মূল বর্ণনা]\nছোট ও স্বাভাবিক বাক্যে দৃশ্যটি বর্ণনা করো। কৌতূহল তৈরি করো, গুরুত্বপূর্ণ মুহূর্তের আগে একটু বিরতি দাও এবং সহজে বলা যায় এমন শব্দ ব্যবহার করো।\n\n[শেষের লাইন]\n“শেষ পর্যন্ত দেখো—তুমি হলে কী করতে?”\n\nনিজের কণ্ঠে রেকর্ড করো অথবা ব্যবহারের অনুমতি আছে এমন ভয়েস টুল ব্যবহার করো।`;
+ }
+ $("output").textContent=result;
+}
+document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>{activeTool=b.dataset.tool; $("workTitle").textContent=b.textContent; $("workspace").scrollIntoView({behavior:"smooth",block:"start"});}));
+$("generate").addEventListener("click",build);
+$("clear").addEventListener("click",()=>{$("topic").value="";$("output").textContent=lang==="bn"?"তোমার তৈরি করা ফলাফল এখানে দেখাবে।":"Your result will appear here.";});
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("output").textContent);$("copy").textContent=translations[lang].copied;setTimeout(()=>{$("copy").textContent=translations[lang].copy},1400)}catch(e){$("output").focus?.();}});
+$("language").addEventListener("change",e=>{lang=e.target.value;applyLang()});
+$("year").textContent=new Date().getFullYear();applyLang();
+</script>
+</body>
+</html>
